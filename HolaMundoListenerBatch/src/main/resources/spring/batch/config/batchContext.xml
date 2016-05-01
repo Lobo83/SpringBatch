@@ -19,4 +19,5 @@
 		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
 		<property name="jobRepository" ref="jobRepository" />
 	</bean>
+	<bean id="myChunkListener" class="org.lobo.spring.batch.listeners.MyChunkListener"/>
 </beans>

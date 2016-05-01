@@ -9,7 +9,11 @@
 <job id="holaMundo" job-repository="jobRepository">
 	<step id="paso1">
 		<tasklet transaction-manager="transactionManager">
-			<chunk commit-interval="1" reader="cvsFileItemReader" processor="fileProcessor" writer="txtFileItemWriter"/>
+			<chunk commit-interval="1" reader="cvsFileItemReader" processor="fileProcessor" writer="txtFileItemWriter">
+				<listeners>
+					<listener ref="myChunkListener"/>
+				</listeners>
+			</chunk>
 		</tasklet>
 	</step>
 </job>
