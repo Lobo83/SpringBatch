@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 <!-- no es necesario especificar el jobRepository puesto que tiene el nombre por defecto -->
-<job id="holaMundo" job-repository="jobRepository">
+<job id="holaMundo" >
 	<step id="paso1">
 		<tasklet transaction-manager="transactionManager">
 			<chunk commit-interval="1" reader="cvsFileItemReader" processor="fileProcessor" writer="txtFileItemWriter">
