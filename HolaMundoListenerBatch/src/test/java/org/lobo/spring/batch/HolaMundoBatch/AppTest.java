@@ -2,11 +2,14 @@ package org.lobo.spring.batch.HolaMundoBatch;
 
 
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,7 +35,8 @@ public class AppTest {
 		
     	try {
 
-    		JobExecution execution = jobLauncher.run(job, new JobParameters());
+    		JobParameters parameters = new JobParametersBuilder().addDate("fechaEjecucion", new Date()).toJobParameters();
+    		JobExecution execution = jobLauncher.run(job, parameters);
     		System.out.println("Exit Status : " + execution.getStatus());
 
     	} catch (Exception e) {

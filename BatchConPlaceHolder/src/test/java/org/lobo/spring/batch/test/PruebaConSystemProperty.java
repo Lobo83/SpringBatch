@@ -1,4 +1,4 @@
-package org.lobo.spring.batch.HolaMundoBatch;
+package org.lobo.spring.batch.test;
 
 
 
@@ -22,8 +22,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "/spring/batch/jobs/job-hola-mundo.xml",
 		"/spring/batch/config/batchContext.xml",
 		"/spring/batch/config/batchStepsContext.xml",
+		"/spring/batch/config/batchStepsContextConSystemProperty.xml",
 		"/spring/batch/config/dataBaseContext.xml" })
-public class AppTest {
+public class PruebaConSystemProperty {
     @Autowired
 	private JobLauncher jobLauncher;
     @Autowired

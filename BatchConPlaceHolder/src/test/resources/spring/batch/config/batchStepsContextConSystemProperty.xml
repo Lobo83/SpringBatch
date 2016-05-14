@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id="txtFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" parent="txtFileItemWriterAbstract">
+		<property name="appendAllowed" value="false" />
+		<property name="shouldDeleteIfExists" value="true"/>
+		<property name="lineAggregator">
+			<bean class="org.lobo.spring.batch.lineAggregator.ExampleLineAggregator" />
+		</property>
+		<!-- file:c:/holaMundoOutput.txt -->
+		<property name="resource" value="${output.file}" />
+	</bean>
+</beans>

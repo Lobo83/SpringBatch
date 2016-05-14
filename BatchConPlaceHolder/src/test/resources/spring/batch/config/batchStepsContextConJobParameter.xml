@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Si no se hubiera usado el namespaces batch en job-hola-mundo.xml entonces habría que definir la bean anonimoa StepScope como sigue:-->
+<!-- 	<bean class="org.springframework.batch.core.scope.StepScope"/> 
+		Si se descomenta esta bean no pasa nada, el framework lo maneja aunque puede ser redundante y no aporta nada
+-->
+	
+	<!-- Sin scope="step" se obtiene el siguiente fallo: Caused by: org.springframework.expression.spel.SpelEvaluationException: 
+	EL1008E:(pos 0): Field or property 'jobParameters' cannot be found on object  -->
+	<bean id="txtFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" parent="txtFileItemWriterAbstract" scope="step">
+		<property name="appendAllowed" value="false" />
+		<property name="shouldDeleteIfExists" value="true"/>
+		<property name="lineAggregator">
+			<bean class="org.lobo.spring.batch.lineAggregator.ExampleLineAggregator" />
+		</property>
+		<!-- file:c:/holaMundoOutput.txt -->
+		<property name="resource" value="#{jobParameters['output.file']}" />
+	</bean>
+</beans>

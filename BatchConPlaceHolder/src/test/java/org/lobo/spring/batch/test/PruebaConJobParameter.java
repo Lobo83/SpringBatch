@@ -1,4 +1,4 @@
-package org.lobo.spring.batch.HolaMundoBatch;
+package org.lobo.spring.batch.test;
 
 
 
@@ -22,8 +22,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "/spring/batch/jobs/job-hola-mundo.xml",
 		"/spring/batch/config/batchContext.xml",
 		"/spring/batch/config/batchStepsContext.xml",
+		"/spring/batch/config/batchStepsContextConJobParameter.xml",
 		"/spring/batch/config/dataBaseContext.xml" })
-public class AppTest {
+public class PruebaConJobParameter {
     @Autowired
 	private JobLauncher jobLauncher;
     @Autowired
@@ -35,7 +36,7 @@ public class AppTest {
 		
     	try {
 
-    		JobParameters parameters = new JobParametersBuilder().addDate("fechaEjecucion", new Date()).toJobParameters();
+    		JobParameters parameters = new JobParametersBuilder().addDate("fechaEjecucion", new Date()).addString("output.file", "file:c:/holaMundoOutput.txt").toJobParameters();
     		JobExecution execution = jobLauncher.run(job, parameters);
     		System.out.println("Exit Status : " + execution.getStatus());
 
