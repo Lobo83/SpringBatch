@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/batch"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+<!-- no es necesario especificar el jobRepository puesto que tiene el nombre por defecto -->
+<job id="batchSaltoCondicional" job-repository="jobRepository">
+	<step id="paso1">
+		<tasklet transaction-manager="transactionManager">
+			<chunk commit-interval="1" reader="cvsFileItemReader" processor="fileProcessor" writer="txtFileItemWriter">
+				<listeners>
+					<listener ref="myChunkListener"/>
+				</listeners>
+			</chunk>
+		</tasklet>
+		<next on="FAILED" to="paso3"/>
+		<next on="*" to="paso2"/>
+		<listeners>
+			<listener ref="myStepListener"/>
+		</listeners>
+	</step>
+	<step id="paso2" parent="parentTasklet">
+		<tasklet ref="beanPaso2"/>
+		
+	</step>
+	<step id="paso3" parent="parentTasklet">
+		<tasklet ref="beanPaso3"/>
+		
+	</step>
+</job>
+<step id="parentTasklet" abstract="true">
+	<listeners>
+			<listener ref="myStepListener"/>
+	</listeners>
+</step>
+</beans:beans>
