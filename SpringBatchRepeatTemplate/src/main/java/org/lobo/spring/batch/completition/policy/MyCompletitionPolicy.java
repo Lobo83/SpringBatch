@@ -45,7 +45,7 @@ public class MyCompletitionPolicy implements CompletionPolicy {
 		}
 		context.setAttribute("lista", lista);
 		context.setAttribute("index", currentIteration);
-		return context;
+		return context;//Realmente esto se considera mala practica. Se debería generar uno nuevo pero para el ejemplo vale
 	}
 
 	@Override
