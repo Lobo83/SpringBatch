@@ -29,11 +29,8 @@ public class MyCompletitionPolicy implements CompletionPolicy {
 	@Override
 	public boolean isComplete(RepeatContext context) {
 		
-		boolean complete=false;
-		if(currentIteration>=this.repetitions){
-			complete=true;
-		}
-		return complete;
+		return currentIteration>this.repetitions;
+		
 	}
 
 	@Override
