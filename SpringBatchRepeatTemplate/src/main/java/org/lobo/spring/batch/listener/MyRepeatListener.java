@@ -3,9 +3,6 @@
  */
 package org.lobo.spring.batch.listener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.batch.repeat.RepeatContext;
 import org.springframework.batch.repeat.RepeatListener;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -21,9 +18,8 @@ public class MyRepeatListener implements RepeatListener {
 	 */
 	@Override
 	public void before(RepeatContext context) {
-		System.out.println("antes de ejecutar una iteracion actualizar indice");
-		Integer index=(Integer) context.getAttribute("index");
-		context.setAttribute("index", index++);
+		System.out.println(String.format("antes de ejecutar la iteracion %s",context.getAttribute("index")));
+
 	}
 	/*
 	 * (non-Javadoc)
@@ -31,8 +27,7 @@ public class MyRepeatListener implements RepeatListener {
 	 */
 	@Override
 	public void after(RepeatContext context, RepeatStatus result) {
-		System.out.println("despues de ejecutar una iteracion");
-		
+		System.out.println(String.format("despues de ejecutar la iteracion %s",context.getAttribute("index")));
 	}
 	/*
 	 * (non-Javadoc)
@@ -41,11 +36,6 @@ public class MyRepeatListener implements RepeatListener {
 	@Override
 	public void open(RepeatContext context) {
 		System.out.println("Preparando el cotarro");
-		List<String> lista = new ArrayList<String>(5);
-		for(int i=0; i<lista.size(); i++){
-			lista.add(String.valueOf(i));
-		}
-		context.setAttribute("lista", lista);
 	}
 
 	/*

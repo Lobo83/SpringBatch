@@ -1,5 +1,6 @@
 package org.lobo.spring.batch.completition.policy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.batch.repeat.CompletionPolicy;
@@ -36,14 +37,20 @@ public class MyCompletitionPolicy implements CompletionPolicy {
 	}
 
 	@Override
-	public RepeatContext start(RepeatContext parent) {
-		// TODO Auto-generated method stub
-		return null;
+	public RepeatContext start(RepeatContext context) {
+		 
+		List<String> lista = new ArrayList<String>(5);
+		for(int i=0; i<5; i++){
+			lista.add(String.valueOf(i));
+		}
+		context.setAttribute("lista", lista);
+		context.setAttribute("index", currentIteration);
+		return context;
 	}
 
 	@Override
 	public void update(RepeatContext context) {
-		currentIteration++;
+		context.setAttribute("index", currentIteration++);
 		
 	}
 

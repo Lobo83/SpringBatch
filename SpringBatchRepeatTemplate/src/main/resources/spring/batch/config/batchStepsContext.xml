@@ -5,4 +5,7 @@
 
 
 	<bean id="stepRepeatTemplate" class="org.lobo.spring.batch.step.StepRepeatTemplate"/>
+	<bean id="stepRepeatCallback" class="org.lobo.spring.batch.template.MyRepeatCallback"/>
+	<bean id="repeatListener" class="org.lobo.spring.batch.listener.MyRepeatListener"/>
+	<bean id="exceptionHandler" class="org.lobo.spring.batch.exception.handler.MyRepeatExceptionHandler"/>
 </beans>

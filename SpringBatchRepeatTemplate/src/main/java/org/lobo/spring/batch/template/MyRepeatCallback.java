@@ -18,8 +18,12 @@ public class MyRepeatCallback implements RepeatCallback {
 		RepeatStatus result;
 		List<String> lista = (List<String>) context.getAttribute("lista");
 		Integer index=(Integer) context.getAttribute("index");
+		double numero=Math.random();
+		if(numero>0.80d){
+			throw new Exception("solo por fastidiar y probar el exception handler");
+		}
 		if(index<lista.size()){
-			System.out.println(String.format("posicion %i de la lista vale %s ",index,lista.get(index)));
+			System.out.println(String.format("posicion %s de la lista vale %s ",index,lista.get(index)));
 			result=RepeatStatus.CONTINUABLE;
 		}else{
 			System.out.println("SACABOOOOOOOO");

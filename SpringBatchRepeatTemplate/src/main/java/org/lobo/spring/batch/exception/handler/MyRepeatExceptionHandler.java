@@ -8,8 +8,8 @@ public class MyRepeatExceptionHandler implements ExceptionHandler {
 	@Override
 	public void handleException(RepeatContext context, Throwable throwable)
 			throws Throwable {
-		System.out.println("Excepcion!!!!!!!");
-		throw throwable;
+		System.out.println("Excepcion!!!!!!!... bueno, sigamos");
+		
 		
 	}
 
